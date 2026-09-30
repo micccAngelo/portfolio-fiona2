@@ -1,13 +1,16 @@
 import { Box, Link, Typography } from "@mui/material";
 import { styles } from "../../portfolioStyles";
-import { Link as RouterLink } from 'react-router-dom';
+import Reveal from "./Reveal";
+import { Link as RouterLink } from "react-router-dom";
 
 export default function Footer() {
   return (
     <Box component="footer" id="contact" sx={styles.footer}>
-      <Box sx={styles.contactRow}>
+      <Reveal sx={styles.contactRow}>
         <div>
-          <Typography component="h1" sx={{ fontSize: '42px' }}>Contact</Typography>
+          <Typography component="h1" sx={{ fontSize: "42px" }}>
+            Contact
+          </Typography>
           <p>Illustration &amp; graphic design</p>
         </div>
         <div>
@@ -29,8 +32,8 @@ export default function Footer() {
             Contact details from the Canva template.
           </Typography>
         </div>
-      </Box>
-      <Box sx={styles.footerArt}>
+      </Reveal>
+      <Reveal sx={styles.footerArt} delay={120}>
         <Link component={RouterLink} sx={styles.footerWordmark} to="/">
           NATFIO GALLERY
         </Link>
@@ -52,7 +55,7 @@ export default function Footer() {
           src="/images/MAFS64r1L74.png"
           alt=""
         />
-      </Box>
+      </Reveal>
       <Box sx={styles.footerBottom}>
         <span>Natfio Gallery · Since 2020</span>
         <Link href="#top">Back to top ↑</Link>

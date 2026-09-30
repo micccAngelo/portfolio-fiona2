@@ -86,13 +86,19 @@ export const styles = {
     fontSize: "clamp(14px, 1.65vw, 22px)",
   },
   explore: {
+    transition: "background-color 180ms ease, transform 180ms ease",
+    "&:active": { transform: "scale(.97)" },
     border: "1px solid #bfce00",
     borderRadius: "40px",
     px: { xs: "26px", sm: "35px" },
     py: { xs: "15px", sm: "19px" },
     fontSize: "14px",
     color: "#111",
-    "&:hover": { bgcolor: lemon, borderColor: "#bfce00" },
+    "&:hover": {
+      bgcolor: lemon,
+      borderColor: "#bfce00",
+      transform: "translateY(-2px)",
+    },
   },
   heroArt: {
     position: "relative",

@@ -1,28 +1,71 @@
 import { Box, Button, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { styles } from "../../portfolioStyles";
+import Reveal from "../Layout/Reveal";
 
 export default function About() {
   return (
     <Box component="main" id="top">
       <Box component="section" sx={styles.hero} aria-labelledby="hero-title">
-        <Box sx={styles.heroCopy}>
-          <Typography component="p" sx={styles.since}>SINCE 2020</Typography>
+        <Reveal sx={styles.heroCopy}>
+          <Typography component="p" sx={styles.since}>
+            SINCE 2020
+          </Typography>
           <Box>
-            <Typography component="h1" sx={styles.heroTitle} id="hero-title">Natfio Gallery</Typography>
-            <Typography component="p" sx={styles.heroSubtitle}>Personal &amp; Agency Project</Typography>
+            <Typography component="h1" sx={styles.heroTitle} id="hero-title">
+              Natfio Gallery
+            </Typography>
+            <Typography component="p" sx={styles.heroSubtitle}>
+              Personal &amp; Agency Project
+            </Typography>
           </Box>
-          <Button component={RouterLink} to="/project" variant="outlined" sx={styles.explore}>Explore the gallery</Button>
-        </Box>
-        <Box sx={styles.heroArt} aria-hidden="true">
-          <Box component="img" sx={styles.americano} src="/images/MAFS6-fZzRc.png" alt="" />
-          <Box component="img" sx={styles.beans} src="/images/MAFS6xmuDc8.png" alt="" />
-          <Box component="img" sx={styles.toast} src="/images/MAFS685cmW8.png" alt="" />
-          <Box component="img" sx={styles.cappuccino} src="/images/MAFS62pyIGU.png" alt="" />
-          <Box component="img" sx={styles.pastry} src="/images/MAFS64r1L74.png" alt="" />
-        </Box>
+          <Button
+            component={RouterLink}
+            to="/project"
+            variant="outlined"
+            sx={styles.explore}
+          >
+            Explore the gallery
+          </Button>
+        </Reveal>
+        <Reveal sx={styles.heroArt} delay={250} aria-hidden="true">
+          <Box
+            component="img"
+            sx={styles.americano}
+            src="/images/MAFS6-fZzRc.png"
+            alt=""
+          />
+          <Box
+            component="img"
+            sx={styles.beans}
+            src="/images/MAFS6xmuDc8.png"
+            alt=""
+          />
+          <Box
+            component="img"
+            sx={styles.toast}
+            src="/images/MAFS685cmW8.png"
+            alt=""
+          />
+          <Box
+            component="img"
+            sx={styles.cappuccino}
+            src="/images/MAFS62pyIGU.png"
+            alt=""
+          />
+          <Box
+            component="img"
+            sx={styles.pastry}
+            src="/images/MAFS64r1L74.png"
+            alt=""
+          />
+        </Reveal>
       </Box>
-      <Box component="section" sx={styles.about} aria-labelledby="about-title">
+      <Reveal
+        component="section"
+        sx={styles.about}
+        aria-labelledby="about-title"
+      >
         <Box sx={styles.aboutCopy}>
           <Box
             component="img"
@@ -58,7 +101,7 @@ export default function About() {
           src="/images/portrait.png"
           alt="Natfio, illustrator and graphic designer, in a city square"
         />
-      </Box>
+      </Reveal>
     </Box>
   );
 }

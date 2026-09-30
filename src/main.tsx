@@ -12,7 +12,9 @@ const theme = createTheme({
         body: { margin: 0 },
         "@media (prefers-reduced-motion: reduce)": {
           html: { scrollBehavior: "auto" },
-          "*, *::before, *::after": { transition: "none !important" },
+          "*, *::before, *::after": {
+            transition: "none !important",
+          },
         },
       },
     },

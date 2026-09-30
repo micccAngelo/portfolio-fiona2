@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Box, Button, Dialog, DialogContent, Typography } from "@mui/material";
 import { styles } from "../../portfolioStyles";
-import { Link as RouterLink, Navigate, useParams } from 'react-router-dom';
+import Reveal from "../Layout/Reveal";
+import { Link as RouterLink, Navigate, useParams } from "react-router-dom";
 
 const categories = [
   { name: "Illustration", image: "MAFS6zGbSzY" },
@@ -69,7 +70,9 @@ const projects = [
 
 export default function Projects() {
   const { category: categorySlug } = useParams();
-  const category = categories.find(item => item.name.toLowerCase().replaceAll(' ', '-') === categorySlug)?.name;
+  const category = categories.find(
+    (item) => item.name.toLowerCase().replaceAll(" ", "-") === categorySlug,
+  )?.name;
   const [selected, setSelected] = useState<(typeof projects)[number] | null>(
     null,
   );
@@ -81,135 +84,164 @@ export default function Projects() {
     <Box component="main" id="top">
       <Box
         component="section"
-        sx={[styles.gallery, { pt: { xs: '32px', sm: '40px' }, minHeight: category ? 'auto' : 'calc(100dvh - 68px)' }]}
+        sx={[
+          styles.gallery,
+          {
+            pt: { xs: "32px", sm: "40px" },
+            minHeight: category ? "auto" : "calc(100dvh - 68px)",
+          },
+        ]}
         id="gallery"
         aria-labelledby="gallery-title"
       >
         <Typography component="h1" sx={styles.galleryTitle} id="gallery-title">
-          {category || 'Gallery Project'}
+          {category || "Gallery Project"}
         </Typography>
-        {!category && <Box sx={styles.categoryGrid}>
-          {categories.map((item) => (
-            <Button
-              disableRipple
-              component={RouterLink}
-              to={`/project/${item.name.toLowerCase().replaceAll(' ', '-')}`}
-              key={item.name}
-              sx={styles.category}
-            >
-              <Box component="span" sx={styles.categoryLabel}>
-                {item.name}
-              </Box>
-              <Box
-                sx={[
-                  styles.categoryArt,
-                  {
-                    borderColor:
-                      category === item.name ? "#111" : "transparent",
-                  },
-                ]}
-              >
-                <img src={`/images/${item.image}.png`} alt="" />
-              </Box>
-            </Button>
-          ))}
-        </Box>}
-        {category && <Box sx={styles.galleryToolbar}>
-          <p aria-live="polite">
-            {category
-              ? `${category} · ${filtered.length} projects`
-              : "Personal & agency projects"}
-          </p>
-          {category && (
-            <Button component={RouterLink} to="/project">Back to categories</Button>
-          )}
-        </Box>}
-      </Box>
-      {category && <Box component="section" aria-label="Selected projects">
-        {filtered.map((project) => (
-          <Box
-            component="article"
-            sx={[
-              styles.project,
-              project.image === "tiger"
-                ? { bgcolor: "#f5ff4f", pb: { xs: 0, sm: 0, md: 0 } }
-                : {},
-            ]}
-            key={project.image}
-          >
-            <Box
-              sx={[
-                styles.projectMain,
-                ["pop-ice", "packaging"].includes(project.image)
-                  ? { gridTemplateColumns: "1fr", gap: "25px" }
-                  : {},
-              ]}
-            >
-              <Button
-                disableRipple
-                sx={styles.artworkButton}
-                onClick={() => {
-                  setSelected(project);
-                }}
-                aria-label={`View ${project.title} artwork`}
-              >
-                <img
-                  src={`/images/${project.image}.png`}
-                  alt={project.title}
-                  loading="lazy"
-                />
-                <Box
-                  component="span"
-                  className="view-artwork"
-                  sx={styles.viewArtwork}
+        {!category && (
+          <Box sx={styles.categoryGrid}>
+            {categories.map((item, index) => (
+              <Reveal key={item.name} delay={index * 180}>
+                <Button
+                  disableRipple
+                  fullWidth
+                  component={RouterLink}
+                  to={`/project/${item.name.toLowerCase().replaceAll(" ", "-")}`}
+                  key={item.name}
+                  sx={styles.category}
                 >
-                  View artwork
-                </Box>
+                  <Box component="span" sx={styles.categoryLabel}>
+                    {item.name}
+                  </Box>
+                  <Box
+                    sx={[
+                      styles.categoryArt,
+                      {
+                        borderColor:
+                          category === item.name ? "#111" : "transparent",
+                      },
+                    ]}
+                  >
+                    <img src={`/images/${item.image}.png`} alt="" />
+                  </Box>
+                </Button>
+              </Reveal>
+            ))}
+          </Box>
+        )}
+        {category && (
+          <Box sx={styles.galleryToolbar}>
+            <p aria-live="polite">
+              {category
+                ? `${category} · ${filtered.length} projects`
+                : "Personal & agency projects"}
+            </p>
+            {category && (
+              <Button component={RouterLink} to="/project">
+                Back to categories
               </Button>
-              <Box sx={styles.projectCopy}>
-                <Box component="span" sx={styles.projectNumber}>
-                  {projects.indexOf(project) + 1}
-                </Box>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-                <Box component="span" sx={styles.projectCategory}>
-                  {project.category}
-                </Box>
-              </Box>
-            </Box>
-            {project.secondary && (
-              <Box sx={styles.projectSecondary}>
-                <div>
-                  <h3>
-                    {project.image === "tiger" ? "Art Print" : "On fabric"}
-                  </h3>
-                  <p>
-                    {project.image === "tiger"
-                      ? "30 × 30 cm"
-                      : "Illustration applied to a T-shirt"}
-                  </p>
-                </div>
-                <img
-                  src={`/images/${project.secondary}.png`}
-                  alt={`${project.title} mockup`}
-                  loading="lazy"
-                />
-              </Box>
-            )}
-            {project.image === "pop-ice" && (
-              <Box component="aside" sx={styles.references}>
-                <h3>References</h3>
-                <p>Browsing for illustration and color moods</p>
-                <img
-                  src="/images/references.png"
-                  alt="Illustration references and colorful mood board for Pop Ice"
-                  loading="lazy"
-                />
-              </Box>
             )}
           </Box>
-        ))}
-      </Box>}
+        )}
+      </Box>
+      {category && (
+        <Box
+          component="section"
+          aria-label="Selected projects"
+          sx={{ overflowX: "clip" }}
+        >
+          {filtered.map((project) => (
+            <Box
+              component="article"
+              sx={[
+                styles.project,
+                project.image === "tiger"
+                  ? { bgcolor: "#f5ff4f", pb: { xs: 0, sm: 0, md: 0 } }
+                  : {},
+              ]}
+              key={project.image}
+            >
+              <Box
+                sx={[
+                  styles.projectMain,
+                  ["pop-ice", "packaging"].includes(project.image)
+                    ? { gridTemplateColumns: "1fr", gap: "25px" }
+                    : {},
+                ]}
+              >
+                <Reveal direction="left">
+                  <Button
+                    disableRipple
+                    sx={styles.artworkButton}
+                    onClick={() => {
+                      setSelected(project);
+                    }}
+                    aria-label={`View ${project.title} artwork`}
+                  >
+                    <img
+                      src={`/images/${project.image}.png`}
+                      alt={project.title}
+                      loading="lazy"
+                    />
+                    <Box
+                      component="span"
+                      className="view-artwork"
+                      sx={styles.viewArtwork}
+                    >
+                      View artwork
+                    </Box>
+                  </Button>
+                </Reveal>
+                <Reveal direction="right" delay={450} sx={styles.projectCopy}>
+                  <Box component="span" sx={styles.projectNumber}>
+                    {projects.indexOf(project) + 1}
+                  </Box>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  <Box component="span" sx={styles.projectCategory}>
+                    {project.category}
+                  </Box>
+                </Reveal>
+              </Box>
+              {project.secondary && (
+                <Box sx={styles.projectSecondary}>
+                  <Reveal direction="left" delay={450}>
+                    <h3>
+                      {project.image === "tiger" ? "Art Print" : "On fabric"}
+                    </h3>
+                    <p>
+                      {project.image === "tiger"
+                        ? "30 × 30 cm"
+                        : "Illustration applied to a T-shirt"}
+                    </p>
+                  </Reveal>
+                  <Reveal
+                    direction="right"
+                    component="img"
+                    src={`/images/${project.secondary}.png`}
+                    alt={`${project.title} mockup`}
+                    loading="lazy"
+                  />
+                </Box>
+              )}
+              {project.image === "pop-ice" && (
+                <Box component="aside" sx={styles.references}>
+                  <Reveal direction="left" delay={450}>
+                    <h3>References</h3>
+                    <p>Browsing for illustration and color moods</p>
+                  </Reveal>
+                  <Reveal
+                    direction="right"
+                    component="img"
+                    src="/images/references.png"
+                    alt="Illustration references and colorful mood board for Pop Ice"
+                    loading="lazy"
+                  />
+                </Box>
+              )}
+            </Box>
+          ))}
+        </Box>
+      )}
       <Dialog
         open={Boolean(selected)}
         onClose={() => setSelected(null)}
