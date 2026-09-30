@@ -8,10 +8,10 @@ export default function Footer() {
     <Box component="footer" id="contact" sx={styles.footer}>
       <Reveal sx={styles.contactRow}>
         <div>
-          <Typography component="h1" sx={{ fontSize: "42px" }}>
-            Contact
+          <Typography component="h1" sx={{ fontSize: 'clamp(65px, 9vw, 130px)', fontFamily: '"Instrument Serif", Georgia, serif', lineHeight: 1, mb: '20px !important' }}>
+            Have an <Box component="em">idea?</Box>
           </Typography>
-          <p>Illustration &amp; graphic design</p>
+          <p>Let’s turn your ideas into something people remember.</p>
         </div>
         <div>
           <Typography component="h3">Main branch</Typography>

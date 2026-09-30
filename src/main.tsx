@@ -19,7 +19,7 @@ const theme = createTheme({
       },
     },
   },
-  palette: { primary: { main: "#111111" }, secondary: { main: "#f5ff4f" } },
+  palette: { primary: { main: "#25271f" }, secondary: { main: "#f5ff4f" }, background: { default: '#f7f5ed', paper: '#f7f5ed' } },
   typography: {
     fontFamily: '"DM Sans", Arial, sans-serif',
     button: { textTransform: "none", fontWeight: 400 },

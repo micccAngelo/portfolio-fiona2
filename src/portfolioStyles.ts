@@ -3,7 +3,7 @@ import type { SxProps, Theme } from "@mui/material";
 const serif = '"Instrument Serif", Georgia, serif';
 const lemon = "#f5ff4f";
 
-export const styles = {
+const baseStyles = {
   page: {
     color: "#111",
     bgcolor: "#fff",
@@ -416,4 +416,51 @@ export const styles = {
     p: "10px 15px",
     "&:hover": { bgcolor: lemon },
   },
+} satisfies Record<string, SxProps<Theme>>;
+
+const paper = '#f7f5ed';
+const ink = '#25271f';
+
+export const styles = {
+  ...baseStyles,
+  page: { ...baseStyles.page, bgcolor: paper, color: ink, minHeight: '100dvh', '& ::selection': { bgcolor: lemon, color: ink } },
+  header: { ...baseStyles.header, px: { xs: '6%', md: '5%' }, py: '18px', borderBottom: '1px solid #25271f25', mx: { xs: '0', md: '3%' } },
+  monogram: { ...baseStyles.monogram, fontSize: '26px', lineHeight: .82, letterSpacing: '-1.8px' },
+  nav: { ...baseStyles.nav, gap: { xs: '14px', sm: '35px' }, '& a': { ...baseStyles.nav['& a'], fontSize: { xs: '13px', sm: '15px' }, position: 'relative', px: '6px', '&[aria-current="page"]': { textDecoration: 'none', '&::after': { content: '""', position: 'absolute', bottom: '4px', left: 0, width: '100%', height: '3px', bgcolor: ink, borderRadius: '50%', transform: 'rotate(-3deg)' } } } },
+  hero: { ...baseStyles.hero, gridTemplateColumns: '1.05fr 1fr', gap: { xs: '20px', sm: '5%' }, px: { xs: '6%', md: '8%' }, pt: { xs: '40px', sm: '65px' }, pb: { xs: '45px', sm: '80px' }, minHeight: 'auto', alignItems: 'center' },
+  heroCopy: { ...baseStyles.heroCopy, gap: { xs: '30px', sm: '45px' }, py: { xs: 0, sm: '25px' } },
+  since: { fontFamily: serif, fontSize: '22px', fontStyle: 'italic', color: ink, transform: 'rotate(-4deg)', borderBottom: `2px solid ${ink}`, pb: '4px' },
+  heroTitle: { ...baseStyles.heroTitle, fontSize: { xs: 'clamp(80px, 20vw, 115px)', sm: 'clamp(86px, 9.7vw, 160px)' }, lineHeight: .86, letterSpacing: '-.055em', '& em': { fontWeight: 400, display: 'block', ml: { xs: '30px', sm: '45px' }, color: ink } },
+  heroSubtitle: { ...baseStyles.heroSubtitle, mt: '30px !important', fontSize: { xs: '14px', sm: '16px' }, maxWidth: '300px', lineHeight: 1.7 },
+  explore: { ...baseStyles.explore, bgcolor: ink, color: `${paper} !important`, borderColor: ink, borderRadius: '3px 20px 3px 20px', px: '28px', py: '17px', '&:hover': { bgcolor: lemon, color: `${ink} !important`, borderColor: ink, transform: 'translateY(-3px) rotate(-1deg)' } },
+  heroArt: { ...baseStyles.heroArt, bgcolor: '#eef19a', border: `1px solid ${ink}`, borderRadius: '48% 48% 4px 4px', p: '15px', transform: 'rotate(2deg)', '&::after': { content: '"A little everyday inspiration"', fontFamily: serif, fontStyle: 'italic', fontSize: { xs: '16px', sm: '20px' }, position: 'absolute', bottom: '-32px', right: '15px', transform: 'rotate(-2deg)' }, '& img': { mixBlendMode: 'multiply' } },
+  americano: { ...baseStyles.americano, left: '13%', top: '12%' },
+  beans: { ...baseStyles.beans, width: '21%', top: '7%', right: '17%' },
+  toast: { ...baseStyles.toast, width: '55%', top: '37%', left: '5%' },
+  cappuccino: { ...baseStyles.cappuccino, width: '27%', top: '41%', right: '4%' },
+  pastry: { ...baseStyles.pastry, width: '51%', bottom: '5%', right: '9%' },
+  about: { ...baseStyles.about, bgcolor: paper, gap: { xs: '35px', md: '8%' }, p: { xs: '50px 6%', md: '90px 8%' }, borderTop: '1px solid #25271f25', alignItems: 'center' },
+  aboutCopy: { ...baseStyles.aboutCopy, alignItems: 'flex-start', textAlign: 'left', p: 0, '& p': { maxWidth: '510px', fontSize: { xs: '16px', md: '18px' }, lineHeight: 1.7, mb: '12px' } },
+  kettle: { width: '85px', mb: '20px', transform: 'rotate(-8deg)', mixBlendMode: 'multiply' },
+  aboutTitle: { fontFamily: serif, fontSize: 'clamp(65px, 7vw, 110px)', mb: '25px !important' },
+  aboutEnding: { mt: '20px !important', fontFamily: serif, fontStyle: 'italic', fontSize: '28px !important', lineHeight: '1.25 !important' },
+  portrait: { ...baseStyles.portrait, height: 'auto', border: '10px solid white', borderBottomWidth: '42px', transform: 'rotate(-3deg)', maxHeight: '620px', boxShadow: '5px 8px 0 #25271f12' },
+  gallery: { ...baseStyles.gallery, px: { xs: '6%', md: '8%' }, pb: '60px' },
+  galleryTitle: { ...baseStyles.galleryTitle, fontSize: 'clamp(65px, 8.5vw, 125px)', textAlign: 'left', lineHeight: .95, mb: { xs: '35px !important', sm: '50px !important' }, '& em': { fontWeight: 400 } },
+  categoryGrid: { ...baseStyles.categoryGrid, gap: { xs: '28px 18px', sm: '25px' }, alignItems: 'start', '& > div:nth-of-type(even)': { mt: { xs: '20px', sm: '45px' } } },
+  category: { ...baseStyles.category, textAlign: 'left', '&:hover': { bgcolor: 'transparent', '& .category-cover': { transform: 'rotate(-2deg) translateY(-5px)' }, '& .category-cover img': { transform: 'scale(1.04)' } } },
+  categoryLabel: { fontFamily: serif, fontSize: 'clamp(25px, 2.5vw, 36px)', display: 'block', mt: '17px', mb: '8px', lineHeight: 1.1 },
+  categoryArt: { ...baseStyles.categoryArt, position: 'relative', bgcolor: lemon, borderRadius: '2px', border: `1px solid ${ink}`, aspectRatio: '3/4', justifyContent: 'center', '& img': { width: '90%', maxWidth: '90%', mixBlendMode: 'multiply', transform: 'none', transition: 'transform 350ms ease' } },
+  galleryToolbar: { ...baseStyles.galleryToolbar, borderTop: '1px solid #25271f30', mt: '25px', '& a': { textDecoration: 'underline', textUnderlineOffset: '5px' } },
+  project: { ...baseStyles.project, px: '8%', py: { xs: '45px', md: '85px' }, borderTop: '1px solid #25271f25' },
+  projectMain: { ...baseStyles.projectMain, alignItems: 'center', gap: { xs: '30px', md: '9%' } },
+  projectNumber: { ...baseStyles.projectNumber, height: 'auto', width: 'auto', bgcolor: 'transparent', color: ink, borderRadius: 0, fontStyle: 'italic', fontSize: '50px', borderBottom: `2px solid ${ink}`, mb: '25px' },
+  projectCopy: { ...baseStyles.projectCopy, '& h3': { fontFamily: serif, fontSize: 'clamp(38px, 4.5vw, 64px)', lineHeight: 1.05 }, '& p': { ...baseStyles.projectCopy['& p'], fontSize: '16px', lineHeight: 1.8, mt: '20px' } },
+  projectCategory: { ...baseStyles.projectCategory, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '.08em' },
+  projectSecondary: { ...baseStyles.projectSecondary, mx: '-9.5238%', bgcolor: paper },
+  references: { ...baseStyles.references, mx: '-9.5238%', mb: { xs: '-45px', md: '-85px' } },
+  footer: { ...baseStyles.footer, px: { xs: '6%', md: '8%' }, pt: '55px' },
+  contactRow: { ...baseStyles.contactRow, gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: '45px', '& > div:first-of-type': { gridColumn: '1 / -1', borderBottom: '1px solid #25271f30', pb: '40px' }, '& h3': { fontFamily: serif, fontSize: '32px', mb: '12px' }, '& p, & a': { fontSize: '15px', lineHeight: 1.8 } },
+  footerArt: { ...baseStyles.footerArt, bgcolor: '#eef19a', border: `1px solid ${ink}`, borderRadius: '3px', '& img': { mixBlendMode: 'multiply' } },
+  footerWordmark: { ...baseStyles.footerWordmark, color: `${ink} !important`, WebkitTextStroke: 'unset', fontFamily: serif, fontWeight: 400, fontSize: { xs: '29px', sm: '45px' }, maxWidth: { xs: 'none', sm: '30%' }, lineHeight: .95 },
 } satisfies Record<string, SxProps<Theme>>;

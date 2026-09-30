@@ -95,8 +95,9 @@ export default function Projects() {
         aria-labelledby="gallery-title"
       >
         <Typography component="h1" sx={styles.galleryTitle} id="gallery-title">
-          {category || "Gallery Project"}
+          {category || <>The <Box component="em">gallery.</Box></>}
         </Typography>
+        {!category && <Typography component="p" sx={{ fontSize: '15px', maxWidth: '440px', lineHeight: 1.7, mb: '35px !important' }}>Personal explorations &amp; agency collaborations.<br />Pick a collection. Take a closer look.</Typography>}
         {!category && (
           <Box sx={styles.categoryGrid}>
             {categories.map((item, index) => (
@@ -109,10 +110,8 @@ export default function Projects() {
                   key={item.name}
                   sx={styles.category}
                 >
-                  <Box component="span" sx={styles.categoryLabel}>
-                    {item.name}
-                  </Box>
                   <Box
+                    className="category-cover"
                     sx={[
                       styles.categoryArt,
                       {
@@ -121,8 +120,11 @@ export default function Projects() {
                       },
                     ]}
                   >
+                    <Box component="span" sx={{ position: 'absolute', top: '12px', left: '15px', fontFamily: '"Instrument Serif", Georgia, serif', fontStyle: 'italic', fontSize: '27px' }}>0{index + 1}</Box>
                     <img src={`/images/${item.image}.png`} alt="" />
                   </Box>
+                  <Box component="span" sx={styles.categoryLabel}>{item.name}</Box>
+                  <Box component="span" sx={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', pb: '10px', borderBottom: '1px solid #25271f35' }}><span>{projects.filter(project => project.category === item.name).length} {projects.filter(project => project.category === item.name).length === 1 ? 'project' : 'projects'}</span><span>View collection ↗</span></Box>
                 </Button>
               </Reveal>
             ))}

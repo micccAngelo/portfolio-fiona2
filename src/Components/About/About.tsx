@@ -13,7 +13,7 @@ export default function About() {
           </Typography>
           <Box>
             <Typography component="h1" sx={styles.heroTitle} id="hero-title">
-              Natfio Gallery
+              Natfio <Box component="em">Gallery.</Box>
             </Typography>
             <Typography component="p" sx={styles.heroSubtitle}>
               Personal &amp; Agency Project

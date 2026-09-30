@@ -21,7 +21,7 @@ export default function Navbar() {
           {
             '& a[aria-current="page"]': {
               color: "#111",
-              textDecoration: "underline",
+              textDecoration: "none",
               textUnderlineOffset: "5px",
             },
           },
