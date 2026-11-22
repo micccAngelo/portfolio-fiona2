@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Box, Button, Dialog, DialogContent, Typography } from "@mui/material";
 import { styles } from "../../portfolioStyles";
 import Reveal from "../Layout/Reveal";
+import Illustration from "./Illustration";
 import { Link as RouterLink, Navigate, useParams } from "react-router-dom";
 
 const categories = [
@@ -80,6 +81,7 @@ export default function Projects() {
     ? projects.filter((project) => project.category === category)
     : [];
   if (categorySlug && !category) return <Navigate to="/project" replace />;
+  if (category === "Illustration") return <Illustration />;
   return (
     <Box component="main" id="top">
       <Box
