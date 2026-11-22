@@ -37,8 +37,8 @@ const paragraph = {
 
 function Divider({ color }: { color: "yellow" | "blue" | "green" }) {
   return (
-    <Box aria-hidden="true" sx={{ overflow: "hidden", lineHeight: 0 }}>
-      <Box component="img" src={asset(`divider-${color}.png`)} alt="" width={2029} height={412} sx={{ display: "block", width: "100%", height: "clamp(64px, 10vw, 132px)", objectFit: "cover" }} />
+    <Box aria-hidden="true" sx={{ lineHeight: 0 }}>
+      <Box component="img" src={asset(`divider-${color}.png`)} alt="" width={2029} height={412} sx={{ display: "block", width: "100%", height: "auto" }} />
     </Box>
   );
 }
